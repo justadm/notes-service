@@ -1,0 +1,16 @@
+/vendor/
+/node_modules/
+/frontend/node_modules/
+/frontend/dist/
+/.idea/
+/.vscode/
+*.swp
+.DS_Store
+*.log
+.env
+.env.local
+/.phpunit.cache/
+.phpunit.result.cache
+/coverage/
+composer.lock
+package-lock.json
