@@ -99,6 +99,12 @@ Swagger/OpenAPI генерируется из PHP-атрибутов:
 docker-compose exec app composer openapi:generate
 ```
 
+Автогенерация при старте контейнера (опционально):
+
+```bash
+GENERATE_OPENAPI=1 docker-compose up -d --build
+```
+
 ## 📁 Структура
 
 ```
