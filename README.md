@@ -126,6 +126,17 @@ docker-compose exec app composer openapi:generate
 GENERATE_OPENAPI=1 docker-compose up -d --build
 ```
 
+## 📣 Уведомления в Telegram (тестовая группа)
+
+Используйте скрипт отправки сообщений:
+
+```bash
+TELEGRAM_BOT_TOKEN=your_token TELEGRAM_CHAT_ID=-5207644985 \
+  php scripts/telegram_notify.php "Тест: бот подключен ✅"
+```
+
+Шаблон переменных окружения — в `.env.example`.
+
 ## 📁 Структура
 
 ```
