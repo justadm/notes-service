@@ -11,6 +11,13 @@ use OpenApi\Attributes as OA;
 )]
 #[OA\Server(url: '/')]
 #[OA\Tag(name: 'Notes', description: 'Операции с заметками')]
+#[OA\SecurityScheme(
+    securityScheme: 'ApiToken',
+    type: 'apiKey',
+    name: 'X-API-Token',
+    in: 'header',
+    description: 'Статический токен доступа из переменной окружения API_TOKEN'
+)]
 #[OA\Schema(
     schema: 'Note',
     type: 'object',
@@ -92,6 +99,7 @@ use OpenApi\Attributes as OA;
     path: '/api/notes',
     summary: 'Получить все заметки',
     tags: ['Notes'],
+    security: [['ApiToken' => []]],
     responses: [
         new OA\Response(
             response: 200,
@@ -109,6 +117,7 @@ use OpenApi\Attributes as OA;
     path: '/api/notes',
     summary: 'Создать заметку',
     tags: ['Notes'],
+    security: [['ApiToken' => []]],
     requestBody: new OA\RequestBody(
         required: true,
         content: new OA\JsonContent(ref: '#/components/schemas/NoteCreateRequest')
@@ -135,6 +144,7 @@ use OpenApi\Attributes as OA;
     path: '/api/notes/{id}',
     summary: 'Получить заметку по ID',
     tags: ['Notes'],
+    security: [['ApiToken' => []]],
     parameters: [
         new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
     ],
@@ -160,6 +170,7 @@ use OpenApi\Attributes as OA;
     path: '/api/notes/{id}',
     summary: 'Обновить заметку',
     tags: ['Notes'],
+    security: [['ApiToken' => []]],
     parameters: [
         new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
     ],
@@ -194,6 +205,7 @@ use OpenApi\Attributes as OA;
     path: '/api/notes/{id}',
     summary: 'Удалить заметку',
     tags: ['Notes'],
+    security: [['ApiToken' => []]],
     parameters: [
         new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
     ],

@@ -17,12 +17,17 @@ class NoteController
     {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Allow-Headers: Content-Type, X-API-Token');
         header('Content-Type: application/json; charset=utf-8');
 
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             http_response_code(200);
             exit;
+        }
+
+        if (!$this->isAuthorized()) {
+            $this->sendResponse(['error' => 'Unauthorized'], 401);
+            return;
         }
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -146,5 +151,22 @@ class NoteController
 
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         exit;
+    }
+
+    private function isAuthorized(): bool
+    {
+        $expected = getenv('API_TOKEN') ?: 'change-me';
+        $headers = function_exists('getallheaders') ? getallheaders() : [];
+
+        $token = '';
+        if (isset($headers['X-API-Token'])) {
+            $token = $headers['X-API-Token'];
+        } elseif (isset($headers['x-api-token'])) {
+            $token = $headers['x-api-token'];
+        } else {
+            $token = $_SERVER['HTTP_X_API_TOKEN'] ?? '';
+        }
+
+        return is_string($token) && hash_equals($expected, $token);
     }
 }

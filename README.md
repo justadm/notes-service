@@ -22,6 +22,23 @@ docker-compose up -d --build
 - **Swagger**: http://localhost:8080/docs (или /docs/swagger-ui.html)
 - **phpMyAdmin**: http://localhost:8081 (root/root)
 
+## 🔐 Авторизация
+
+Все API‑запросы требуют токен в заголовке `X-API-Token`.
+
+По умолчанию используется токен `change-me`. Можно переопределить через переменную окружения:
+
+```bash
+API_TOKEN=supersecret docker-compose up -d --build
+```
+
+Пример запроса:
+
+```bash
+curl http://localhost:8080/api/notes \\
+  -H "X-API-Token: change-me"
+```
+
 ## ✅ Чек-лист сдачи
 
 - Репозиторий публичный (GitHub/GitLab/Bitbucket)
