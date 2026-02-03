@@ -19,7 +19,7 @@ docker-compose up -d --build
 
 - **Приложение**: http://localhost:8080
 - **API**: http://localhost:8080/api/notes
-- **Swagger**: http://localhost:8080/docs/swagger-ui.html
+- **Swagger**: http://localhost:8080/docs (или /docs/swagger-ui.html)
 - **phpMyAdmin**: http://localhost:8081 (root/root)
 
 ## ✅ Чек-лист сдачи
@@ -89,6 +89,14 @@ curl http://localhost:8080/api/notes
 curl -X POST http://localhost:8080/api/notes \
   -H "Content-Type: application/json" \
   -d '{"title":"Test","content":"Hello"}'
+```
+
+## 🧾 Swagger генерация
+
+Swagger/OpenAPI генерируется из PHP-атрибутов:
+
+```bash
+docker-compose exec app composer openapi:generate
 ```
 
 ## 📁 Структура

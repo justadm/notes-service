@@ -3,7 +3,8 @@
   "description": "RESTful API сервис заметок",
   "type": "project",
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.0",
+    "zircote/swagger-php": "^4.11"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0"
@@ -17,5 +18,8 @@
     "psr-4": {
       "Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "openapi:generate": "openapi --format json --output public/docs/openapi.json src"
   }
 }

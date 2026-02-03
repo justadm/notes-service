@@ -12,5 +12,4 @@
 /.phpunit.cache/
 .phpunit.result.cache
 /coverage/
-composer.lock
-package-lock.json
+# lockfiles are committed for reproducibility

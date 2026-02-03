@@ -5,6 +5,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Controller\NoteController;
 
 $uri = $_SERVER['REQUEST_URI'];
+$path = parse_url($uri, PHP_URL_PATH);
+
+if ($path === '/docs' || $path === '/docs/') {
+    header('Location: /docs/swagger-ui.html', true, 302);
+    exit;
+}
 
 if (strpos($uri, '/api/notes') === 0) {
     $controller = new NoteController();
