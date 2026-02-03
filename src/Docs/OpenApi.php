@@ -102,6 +102,11 @@ use OpenApi\Attributes as OA;
     security: [['ApiToken' => []]],
     responses: [
         new OA\Response(
+            response: 401,
+            description: 'Неавторизован',
+            content: new OA\JsonContent(ref: '#/components/schemas/ErrorResponse')
+        ),
+        new OA\Response(
             response: 200,
             description: 'Список заметок',
             content: new OA\JsonContent(ref: '#/components/schemas/NotesListResponse')
@@ -123,6 +128,11 @@ use OpenApi\Attributes as OA;
         content: new OA\JsonContent(ref: '#/components/schemas/NoteCreateRequest')
     ),
     responses: [
+        new OA\Response(
+            response: 401,
+            description: 'Неавторизован',
+            content: new OA\JsonContent(ref: '#/components/schemas/ErrorResponse')
+        ),
         new OA\Response(
             response: 201,
             description: 'Заметка создана',
@@ -149,6 +159,11 @@ use OpenApi\Attributes as OA;
         new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
     ],
     responses: [
+        new OA\Response(
+            response: 401,
+            description: 'Неавторизован',
+            content: new OA\JsonContent(ref: '#/components/schemas/ErrorResponse')
+        ),
         new OA\Response(
             response: 200,
             description: 'Заметка',
@@ -180,6 +195,11 @@ use OpenApi\Attributes as OA;
     ),
     responses: [
         new OA\Response(
+            response: 401,
+            description: 'Неавторизован',
+            content: new OA\JsonContent(ref: '#/components/schemas/ErrorResponse')
+        ),
+        new OA\Response(
             response: 200,
             description: 'Заметка обновлена',
             content: new OA\JsonContent(ref: '#/components/schemas/NoteResponse')
@@ -210,6 +230,11 @@ use OpenApi\Attributes as OA;
         new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer'))
     ],
     responses: [
+        new OA\Response(
+            response: 401,
+            description: 'Неавторизован',
+            content: new OA\JsonContent(ref: '#/components/schemas/ErrorResponse')
+        ),
         new OA\Response(
             response: 200,
             description: 'Заметка удалена',

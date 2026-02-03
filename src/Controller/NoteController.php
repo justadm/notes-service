@@ -26,7 +26,7 @@ class NoteController
         }
 
         if (!$this->isAuthorized()) {
-            $this->sendResponse(['error' => 'Unauthorized'], 401);
+            $this->sendResponse($this->buildUnauthorizedResponse(), 401);
             return;
         }
 
@@ -149,8 +149,31 @@ class NoteController
             $response['errors'] = $data['errors'];
         }
 
+        if (isset($data['details'])) {
+            $response['details'] = $data['details'];
+        }
+
         echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         exit;
+    }
+
+    private function buildUnauthorizedResponse(): array
+    {
+        $expected = getenv('API_TOKEN') ?: 'change-me';
+        $details = [
+            'header' => 'X-API-Token',
+            'example' => 'X-API-Token: change-me'
+        ];
+
+        if ((getenv('APP_ENV') ?: '') === 'dev') {
+            $details['debug_token'] = $expected;
+        }
+
+        return [
+            'error' => 'Unauthorized',
+            'message' => 'Missing or invalid API token',
+            'details' => $details
+        ];
     }
 
     private function isAuthorized(): bool

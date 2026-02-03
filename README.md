@@ -39,6 +39,10 @@ curl http://localhost:8080/api/notes \\
   -H "X-API-Token: change-me"
 ```
 
+Отладка (dev):
+Если установить `APP_ENV=dev`, то в ответе `401` будет поле `details.debug_token`
+со значением текущего токена (только для локальной отладки).
+
 ## ✅ Чек-лист сдачи
 
 - Репозиторий публичный (GitHub/GitLab/Bitbucket)
