@@ -9,6 +9,12 @@ if [ -f /var/www/composer.json ]; then
   fi
 fi
 
+if [ "${GENERATE_OPENAPI:-0}" = "1" ]; then
+  echo "[entrypoint] Generating OpenAPI..."
+  cd /var/www
+  composer openapi:generate || true
+fi
+
 if [ -f /var/www/frontend/package.json ]; then
   cd /var/www/frontend
   if [ ! -d node_modules ]; then
