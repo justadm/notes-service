@@ -21,11 +21,48 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotesListResponse"
+                },
+                "examples": {
+                  "notes": {
+                    "value": {
+                      "status": "success",
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "Новая заметка",
+                          "content": "Содержимое",
+                          "created_at": "2026-02-03 12:00:00",
+                          "updated_at": "2026-02-03 12:00:00"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Internal server error"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Notes"
+        ]
       },
       "post": {
         "summary": "Создать заметку",
@@ -46,6 +83,20 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NoteResponse"
+                },
+                "examples": {
+                  "created": {
+                    "value": {
+                      "status": "success",
+                      "data": {
+                        "id": 1,
+                        "title": "Новая заметка",
+                        "content": "Содержимое",
+                        "created_at": "2026-02-03 12:00:00",
+                        "updated_at": "2026-02-03 12:00:00"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -56,11 +107,45 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ValidationErrorResponse"
+                },
+                "examples": {
+                  "validation_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Validation failed",
+                      "errors": {
+                        "title": [
+                          "Title is required"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Internal server error"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Notes"
+        ]
       }
     },
     "/api/notes/{id}": {
@@ -83,6 +168,20 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NoteResponse"
+                },
+                "examples": {
+                  "note": {
+                    "value": {
+                      "status": "success",
+                      "data": {
+                        "id": 1,
+                        "title": "Новая заметка",
+                        "content": "Содержимое",
+                        "created_at": "2026-02-03 12:00:00",
+                        "updated_at": "2026-02-03 12:00:00"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -93,11 +192,40 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "not_found": {
+                    "value": {
+                      "status": "error",
+                      "message": "Note not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Internal server error"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Notes"
+        ]
       },
       "put": {
         "summary": "Обновить заметку",
@@ -128,6 +256,20 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NoteResponse"
+                },
+                "examples": {
+                  "updated": {
+                    "value": {
+                      "status": "success",
+                      "data": {
+                        "id": 1,
+                        "title": "Новая заметка",
+                        "content": "Содержимое",
+                        "created_at": "2026-02-03 12:00:00",
+                        "updated_at": "2026-02-03 12:00:00"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -138,6 +280,14 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "not_found": {
+                    "value": {
+                      "status": "error",
+                      "message": "Note not found"
+                    }
+                  }
                 }
               }
             }
@@ -148,11 +298,45 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ValidationErrorResponse"
+                },
+                "examples": {
+                  "validation_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Validation failed",
+                      "errors": {
+                        "title": [
+                          "Title is required"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Internal server error"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Notes"
+        ]
       },
       "delete": {
         "summary": "Удалить заметку",
@@ -173,6 +357,14 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageResponse"
+                },
+                "examples": {
+                  "deleted": {
+                    "value": {
+                      "status": "success",
+                      "message": "Note deleted successfully"
+                    }
+                  }
                 }
               }
             }
@@ -183,11 +375,40 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "not_found": {
+                    "value": {
+                      "status": "error",
+                      "message": "Note not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка сервера",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "value": {
+                      "status": "error",
+                      "message": "Internal server error"
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Notes"
+        ]
       }
     }
   },
@@ -311,6 +532,57 @@
           }
         }
       }
+    },
+    "examples": {
+      "NoteExample": {
+        "value": {
+          "id": 1,
+          "title": "Новая заметка",
+          "content": "Содержимое",
+          "created_at": "2026-02-03 12:00:00",
+          "updated_at": "2026-02-03 12:00:00"
+        }
+      },
+      "NotesListExample": {
+        "value": [
+          {
+            "id": 1,
+            "title": "Новая заметка",
+            "content": "Содержимое",
+            "created_at": "2026-02-03 12:00:00",
+            "updated_at": "2026-02-03 12:00:00"
+          }
+        ]
+      },
+      "ValidationErrorExample": {
+        "value": {
+          "status": "error",
+          "message": "Validation failed",
+          "errors": {
+            "title": [
+              "Title is required"
+            ]
+          }
+        }
+      },
+      "NotFoundExample": {
+        "value": {
+          "status": "error",
+          "message": "Note not found"
+        }
+      },
+      "DeleteMessageExample": {
+        "value": {
+          "status": "success",
+          "message": "Note deleted successfully"
+        }
+      }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Notes",
+      "description": "Операции с заметками"
+    }
+  ]
 }
